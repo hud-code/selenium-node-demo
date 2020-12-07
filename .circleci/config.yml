@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.1.1
+
+jobs:
+  browser-test:
+    docker:
+      - image: cimg/node:14.15.1-browsers
+    steps:
+      - checkout
+      - browser-tools/install-browser-tools
+      - run: npm install
+      - run: npm test_ci
+      - store_test_results:
+          path: test_results
+      - store_artifacts:
+          path: test_results
+
+workflows:
+  test-all-the-things:
+    jobs:
+      - browser-test
