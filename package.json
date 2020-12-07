@@ -1,0 +1,27 @@
+{
+  "name": "selenium-node-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BytesGuy/selenium-node-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BytesGuy/selenium-node-demo/issues"
+  },
+  "homepage": "https://github.com/BytesGuy/selenium-node-demo#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chromedriver": "^87.0.2",
+    "edgedriver": "^4.17134.1",
+    "geckodriver": "^1.21.0",
+    "mocha": "^8.2.1",
+    "selenium-webdriver": "^4.0.0-alpha.8"
+  }
+}
