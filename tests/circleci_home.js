@@ -17,6 +17,19 @@ browsers.forEach((browser) => {
         expect(title).to.equal('Continuous Integration and Delivery - CircleCI');
       });
 
+      it('['+browser+'] cookie banner present', async function() {
+        await driver.wait(until.elementIsVisible(driver.findElement(By.id('cookiebanner'))));
+        const cookieBanner = await driver.findElement(By.id('cookiebanner'));
+        expect(await cookieBanner.isDisplayed()).to.be.true;
+      });
+
+      it('['+browser+'] dismiss cookie banner', async function() {
+        await driver.wait(until.elementIsVisible(driver.findElement(By.className('c-button'), 5000)));
+        await driver.findElement(By.className('c-button')).click();
+        const cookieButton = await driver.findElement(By.className('c-button')).isDisplayed();
+        expect(cookieButton).to.be.false;
+      });
+
       it('['+browser+'] product menu should be hidden', async function() {
         const menu = await driver.findElement(By.css("li:nth-of-type(1) > .submenu")).isDisplayed();
         expect(menu).to.be.false;
@@ -28,12 +41,16 @@ browsers.forEach((browser) => {
         const menu = await driver.findElement(By.css("li:nth-of-type(1) > .submenu")).isDisplayed();
         expect(menu).to.be.true;
       });
+
+      it('['+browser+'] should display the language selector', async function() {
+        const languageSelector = await driver.findElement(By.id('languageSelectDropdown')).click();
+        const languageMenu = await driver.findElement(By.className('dropdown-menu')).isDisplayed();
+        expect(languageMenu).to.be.true;
+      });
     });
 
     describe('Check links are correct', async function() {
       it('['+browser+'] should link correctly to Support', async function() {
-        // const supportLink = await (await driver).findElement(By.linkText("Support"));
-        // await driver.actions().move({origin:supportLink}).perform();
         const getSupportLink = await driver.findElement(By.linkText("Get Support"));
         const supportURL = await getSupportLink.getAttribute('href');
         expect(supportURL).to.equal('https://support.circleci.com/hc/en-us/');
