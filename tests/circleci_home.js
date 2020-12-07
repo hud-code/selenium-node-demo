@@ -18,17 +18,25 @@ browsers.forEach((browser) => {
       });
 
       it('['+browser+'] cookie banner present', async function() {
-        await driver.wait(until.elementIsVisible(driver.findElement(By.id('cookiebanner'))));
-        const cookieBanner = await driver.findElement(By.id('cookiebanner'));
-        expect(await cookieBanner.isDisplayed()).to.be.true;
+        if (process.env.CIRCLECI) {
+          this.skip();
+        } else {
+          await driver.wait(until.elementIsVisible(driver.findElement(By.id('cookiebanner'))));
+          const cookieBanner = await driver.findElement(By.id('cookiebanner'));
+          expect(await cookieBanner.isDisplayed()).to.be.true;
+        }
       });
 
       it('['+browser+'] dismiss cookie banner', async function() {
-        await driver.sleep(2000);
-        await driver.wait(until.elementIsVisible(driver.findElement(By.className('c-button'), 5000)));
-        await driver.findElement(By.className('c-button')).click();
-        const cookieButton = await driver.findElement(By.className('c-button')).isDisplayed();
-        expect(cookieButton).to.be.false;
+        if (process.env.CIRCLECI) {
+          this.skip();
+        } else {
+          await driver.sleep(2000);
+          await driver.wait(until.elementIsVisible(driver.findElement(By.className('c-button'), 5000)));
+          await driver.findElement(By.className('c-button')).click();
+          const cookieButton = await driver.findElement(By.className('c-button')).isDisplayed();
+          expect(cookieButton).to.be.false;
+        }
       });
 
       it('['+browser+'] product menu should be hidden', async function() {
