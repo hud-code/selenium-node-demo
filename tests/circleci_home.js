@@ -24,6 +24,7 @@ browsers.forEach((browser) => {
       });
 
       it('['+browser+'] dismiss cookie banner', async function() {
+        await driver.sleep(2000);
         await driver.wait(until.elementIsVisible(driver.findElement(By.className('c-button'), 5000)));
         await driver.findElement(By.className('c-button')).click();
         const cookieButton = await driver.findElement(By.className('c-button')).isDisplayed();
@@ -45,6 +46,12 @@ browsers.forEach((browser) => {
       it('['+browser+'] should display the language selector', async function() {
         const languageSelector = await driver.findElement(By.id('languageSelectDropdown')).click();
         const languageMenu = await driver.findElement(By.className('dropdown-menu')).isDisplayed();
+
+        const image = await driver.takeScreenshot();
+        await require('fs').writeFile('./test_results/'+browser+'_language_selector.png', image, 'base64', function(err) {
+          console.log(err);
+        });
+
         expect(languageMenu).to.be.true;
       });
     });
