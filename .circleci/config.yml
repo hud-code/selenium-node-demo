@@ -9,8 +9,16 @@ jobs:
       - image: cimg/node:14.15.1-browsers
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - browser-tools/install-browser-tools
+      - run: mkdir test_results
       - run: npm install
+      - save_cache:
+          paths:
+            - ~/project/node_modules
+          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm run testci
       - store_test_results:
           path: test_results
