@@ -11,7 +11,7 @@ jobs:
       - checkout
       - browser-tools/install-browser-tools
       - run: npm install
-      - run: npm testci
+      - run: npm run testci
       - store_test_results:
           path: test_results
       - store_artifacts:
