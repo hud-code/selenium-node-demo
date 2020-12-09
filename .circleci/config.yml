@@ -5,9 +5,12 @@ orbs:
 
 jobs:
   browser-test:
+    parameters:
+      browser:
+        type: string
+        default: "firefox"
     docker:
       - image: cimg/node:14.15.1-browsers
-    resource_class: xlarge
     steps:
       - checkout
       - restore_cache:
@@ -21,9 +24,9 @@ jobs:
             - ~/project/node_modules
           key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
-            command: npm run testci
+            command: npm run testci -- << parameters.browser >>
             environment:
-              --max-old-space-size: 12288
+              --max-old-space-size: 3072
       - store_test_results:
           path: test_results
       - store_artifacts:
@@ -32,4 +35,9 @@ jobs:
 workflows:
   test-all-the-things:
     jobs:
-      - browser-test
+      - browser-test:
+          browser: "firefox"
+          name: "Firefox"
+      - browser-test:
+          browser: "chrome"
+          name: "Chrome"
