@@ -24,9 +24,10 @@ jobs:
             - ~/project/node_modules
           key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
-            command: npm run testci -- << parameters.browser >>
+            command: npm run testci
             environment:
               --max-old-space-size: 3072
+              BROWSER: << parameters.browser >>
       - store_test_results:
           path: test_results
       - store_artifacts:

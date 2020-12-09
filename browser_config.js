@@ -1,5 +1,5 @@
-if(process.env.CIRCLECI) {
-  let browsers = [process.argv[10]];
+if(process.env.BROWSER) {
+  let browsers = [process.env.BROWSER];
 } else {
   let browsers = ['chrome', 'firefox'];
 }
