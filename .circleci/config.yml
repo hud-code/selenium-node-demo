@@ -10,7 +10,7 @@ jobs:
         type: string
         default: "firefox"
     docker:
-      - image: cimg/node:14.15.1
+      - image: cimg/node:14.15.1-browsers
     steps:
       - checkout
       - restore_cache:
