@@ -17,6 +17,8 @@ jobs:
           keys:
             - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - browser-tools/install-browser-tools
+      - browser-tools/install-browser-tools
+          when: on_fail
       - run: mkdir test_results
       - run: npm install
       - save_cache:
