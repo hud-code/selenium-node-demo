@@ -21,6 +21,7 @@ browsers.forEach((browser) => {
         if (process.env.CIRCLECI) {
           this.skip();
         } else {
+          await driver.sleep(2000);
           await driver.wait(until.elementIsVisible(driver.findElement(By.id('cookiebanner'))));
           const cookieBanner = await driver.findElement(By.id('cookiebanner'));
           expect(await cookieBanner.isDisplayed()).to.be.true;
