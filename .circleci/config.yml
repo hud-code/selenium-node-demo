@@ -55,7 +55,6 @@ jobs:
           # background: true
           command: |
             defaults write com.apple.Safari AllowRemoteAutomation 1
-            sudo safaridriver --enable
       - run:
             command: npm run testci
             environment:
