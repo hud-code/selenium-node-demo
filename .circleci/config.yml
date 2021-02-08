@@ -43,13 +43,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v1-mac-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: mkdir test_results
       - run: npm install
       - save_cache:
           paths:
             - ~/project/node_modules
-          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: node-v1-mac-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: sudo safaridriver --enable
       - run:
             command: npm run testci
