@@ -34,7 +34,7 @@ jobs:
           path: test_results
   browser-test-mac:
     macos:
-      xcode: 11.7.0
+      xcode: 12.4.0
     parameters:
       browser:
         type: string
@@ -50,8 +50,13 @@ jobs:
           paths:
             - ~/project/node_modules
           key: node-v1-mac-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - run: sudo safaridriver --enable
-      - run: safaridriver --enable
+      - run: 
+          name: Enable safaridriver
+          command: |
+            defaults write com.apple.Safari IncludeDevelopMenu YES
+            defaults write com.apple.Safari AllowRemoteAutomation 1
+            sudo safaridriver --enable
+            safaridriver -p 0 &
       - run:
             command: npm run testci
             environment:
