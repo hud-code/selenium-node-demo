@@ -58,7 +58,7 @@ jobs:
       - run:
             command: npm run testci
             environment:
-              --max-old-space-size: 3072
+              --max-old-space-size: 4096
               BROWSER: << parameters.browser >>
       - store_test_results:
           path: test_results
