@@ -52,17 +52,17 @@ browsers.forEach((browser) => {
         expect(menu).to.be.true;
       });
 
-      it('['+browser+'] should display the language selector', async function() {
-        const languageSelector = await driver.findElement(By.id('languageSelectDropdown')).click();
-        const languageMenu = await driver.findElement(By.className('dropdown-menu')).isDisplayed();
+      // it('['+browser+'] should display the language selector', async function() {
+      //   const languageSelector = await driver.findElement(By.id('languageSelectDropdown')).click();
+      //   const languageMenu = await driver.findElement(By.className('dropdown-menu')).isDisplayed();
 
-        const image = await driver.takeScreenshot();
-        await require('fs').writeFile('./test_results/'+browser+'_language_selector.png', image, 'base64', function(err) {
-          console.log(err);
-        });
+      //   const image = await driver.takeScreenshot();
+      //   await require('fs').writeFile('./test_results/'+browser+'_language_selector.png', image, 'base64', function(err) {
+      //     console.log(err);
+      //   });
 
-        expect(languageMenu).to.be.true;
-      });
+      //   expect(languageMenu).to.be.true;
+      // });
     });
 
     describe('Check links are correct', async function() {
