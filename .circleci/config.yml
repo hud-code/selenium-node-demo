@@ -35,6 +35,10 @@ jobs:
   browser-test-mac:
     macos:
       xcode: 12.4.0
+    parameters:
+      browser:
+        type: string
+        default: "safari"
     steps:
       - checkout
       - restore_cache:
@@ -51,7 +55,7 @@ jobs:
             command: npm run testci
             environment:
               --max-old-space-size: 3072
-              BROWSER: safari
+              BROWSER: << parameters.browser >>
       - store_test_results:
           path: test_results
       - store_artifacts:
