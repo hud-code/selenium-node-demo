@@ -54,9 +54,7 @@ jobs:
           name: Enable and run safaridriver
           background: true
           command: |
-            defaults write com.apple.Safari IncludeDevelopMenu YES
             defaults write com.apple.Safari AllowRemoteAutomation 1
-            sudo safaridriver --enable
             safaridriver -p 0
       - run:
             command: npm run testci
