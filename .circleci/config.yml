@@ -51,6 +51,7 @@ jobs:
             - ~/project/node_modules
           key: node-v1-mac-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: sudo safaridriver --enable
+      - run: safaridriver --enable
       - run:
             command: npm run testci
             environment:
