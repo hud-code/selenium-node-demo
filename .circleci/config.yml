@@ -52,10 +52,10 @@ jobs:
           key: node-v1-mac-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: 
           name: Enable and run safaridriver
-          background: true
+          # background: true
           command: |
             defaults write com.apple.Safari AllowRemoteAutomation 1
-            safaridriver -p 0
+            sudo safaridriver --enable
       - run:
             command: npm run testci
             environment:
