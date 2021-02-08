@@ -53,8 +53,6 @@ jobs:
       - run: 
           name: Enable safaridriver
           command: |
-            defaults write com.apple.Safari IncludeDevelopMenu YES
-            defaults write com.apple.Safari AllowRemoteAutomation 1
             sudo safaridriver --enable
             safaridriver -p 0 &
       - run:
