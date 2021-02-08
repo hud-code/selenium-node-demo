@@ -34,7 +34,7 @@ jobs:
           path: test_results
   browser-test-mac:
     macos:
-      xcode: 12.4.0
+      xcode: 11.7.0
     parameters:
       browser:
         type: string
