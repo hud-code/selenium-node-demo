@@ -65,6 +65,8 @@ browsers.forEach((browser) => {
       // });
     });
 
+    //test
+
     describe('Check links are correct', async function() {
       it('['+browser+'] should link correctly to Support', async function() {
         const getSupportLink = await driver.findElement(By.linkText("Get Support"));
